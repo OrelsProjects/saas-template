@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useAppDispatch } from "../lib/hooks/redux";
+import { useAppDispatch } from "@/lib/hooks/redux";
 import { useSession } from "next-auth/react";
-import { setUser } from "../lib/features/auth/authSlice";
+import { setUser } from "@/lib/features/auth/authSlice";
 
 export default function AuthProvider({
   children,

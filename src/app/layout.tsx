@@ -4,6 +4,8 @@ import "./globals.css";
 import StoreProvider from "./providers/StoreProvider";
 import SessionWrapper from "./providers/SessionWrapper";
 import AuthProvider from "./providers/AuthProvider";
+import { cn } from "../lib/utils";
+import { PoppinsFont } from "../lib/utils/fontUtils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={cn(inter.className, PoppinsFont.className)}>
         <StoreProvider>
           <SessionWrapper>
             <AuthProvider>{children}</AuthProvider>
