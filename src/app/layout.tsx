@@ -6,6 +6,7 @@ import SessionWrapper from "./providers/SessionWrapper";
 import AuthProvider from "./providers/AuthProvider";
 import { cn } from "../lib/utils";
 import { PoppinsFont } from "../lib/utils/fontUtils";
+import UnautenticatedProvider from "./providers/UnautenticatedProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,10 +22,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, PoppinsFont.className)}>
+      <body className={cn(inter.className, "h-dvh w-screen")}>
         <StoreProvider>
           <SessionWrapper>
-            <AuthProvider>{children}</AuthProvider>
+            <AuthProvider>
+              <UnautenticatedProvider>{children}</UnautenticatedProvider>
+            </AuthProvider>
           </SessionWrapper>
         </StoreProvider>
       </body>
