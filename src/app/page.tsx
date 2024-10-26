@@ -1,11 +1,14 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import Logo from "../components/logo";
 import { cn } from "../lib/utils";
 import { PoppinsFont } from "../lib/utils/fontUtils";
 import Card from "../components/ui/card";
 import { Button } from "../components/ui/button";
+import { IoMdStar } from "react-icons/io";
+import { formatDate } from "../lib/utils/dateUtils";
 
 const Section = ({
   title,
@@ -18,7 +21,9 @@ const Section = ({
 }) => {
   return (
     <section className={cn("flex flex-col gap-8", className)}>
-      <h2 className="text-xl leading-[30px] font-light text-start">{title}</h2>
+      <h2 className="text-xl leading-[30px] font-light text-start text-foreground/60">
+        {title}
+      </h2>
       {children}
     </section>
   );
@@ -112,6 +117,95 @@ const UsInNumbers = () => (
   </Section>
 );
 
+const Star = () => (
+  <div className="w-7 h-7 bg-rating-background flex justify-center items-center p-1">
+    <IoMdStar className="w-full h-full" />
+  </div>
+);
+
+const Reviews = () => (
+  <Section title="People say that">
+    <div className="w-full flex flex-row gap-4 overflow-x-auto flex-shrink-0">
+      <Card className="w-[253px] h-[228px] flex flex-col gap-4 py-8 px-[18px]">
+        <div className="flex flex-row gap-2">
+          <Star />
+          <Star />
+          <Star />
+          <Star />
+          <Star />
+        </div>
+        <h3 className="text-xl leading-[25px] font-semibold line-clamp-1">
+          Matty
+        </h3>
+        <p className="line-clamp-2">
+          For quite a few years Service has always been working as expected!
+        </p>
+        <p className="text-sm text-foreground/40">{formatDate(new Date())}</p>
+      </Card>
+      <Card className="w-[253px] h-[228px] flex flex-col gap-4 py-8 px-[18px]">
+        <div className="flex flex-row gap-2">
+          <Star />
+          <Star />
+          <Star />
+          <Star />
+          <Star />
+        </div>
+        <h3 className="text-xl leading-[25px] font-semibold line-clamp-1">
+          Matty
+        </h3>
+        <p className="line-clamp-2">
+          For quite a few years Service has always been working as expected!
+        </p>
+        <p className="text-sm text-foreground/40">{formatDate(new Date())}</p>
+      </Card>
+      <Card className="w-[253px] h-[228px] flex flex-col gap-4 py-8 px-[18px]">
+        <div className="flex flex-row gap-2">
+          <Star />
+          <Star />
+          <Star />
+          <Star />
+          <Star />
+        </div>
+        <h3 className="text-xl leading-[25px] font-semibold line-clamp-1">
+          Matty
+        </h3>
+        <p className="line-clamp-2">
+          For quite a few years Service has always been working as expected!
+        </p>
+        <p className="text-sm text-foreground/40">{formatDate(new Date())}</p>
+      </Card>
+    </div>
+  </Section>
+);
+
+const BottomCallToAction = () => (
+  <div className="flex flex-col gap-4 justify-center items-center">
+    <h3 className="text-4xl font-semibold text-center">
+      Think you&apos;ve got what it takes?
+    </h3>
+    <p className="text-center font-light">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin efficitur
+      metus
+    </p>
+    <Button className="py-4 px-14">Join us!</Button>
+  </div>
+);
+
+const CompanyLogo = ({ src, alt }: { src: string; alt: string }) => (
+  <Image src={src} alt={alt} width={134} height={32} />
+);
+
+const Footer = () => (
+  <Section title="You can find us working with">
+    <div className="w-full flex flex-col items-center gap-10 md:flex-row md:gap-20 overflow-x-auto flex-shrink-0">
+      <CompanyLogo src="/edge-kart.png" alt="Edge Kart" />
+      <CompanyLogo src="/grasshopper.png" alt="Grasshopper" />
+      <CompanyLogo src="/kinetic.png" alt="Kinetic" />
+      <CompanyLogo src="/omega-million.png" alt="Omega Million" />
+    </div>
+  </Section>
+);
+
 export default function Home() {
   return (
     <main
@@ -127,6 +221,9 @@ export default function Home() {
         </h2>
         <Cards />
         <UsInNumbers />
+        <Reviews />
+        <BottomCallToAction />
+        <Footer />
       </div>
     </main>
   );
