@@ -27,6 +27,8 @@
 
     --rating-star-background: 160 100% 36%;
     --rating-star-forebackground: 0 0% 78%;
+    --positive: 137 100% 50%;
+    --note: 65 100% 89%;
   }
 
   .dark {

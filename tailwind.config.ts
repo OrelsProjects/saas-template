@@ -63,6 +63,8 @@ const config = {
           background: "hsl(var(--rating-star-background))",
           foreground: "hsl(var(--rating-star-foreground))",
         },
+        positive: "hsl(var(--positive))",
+        note: "hsl(var(--note))",
       },
       borderRadius: {
         lg: "var(--radius)",
