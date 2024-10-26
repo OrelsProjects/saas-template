@@ -26,13 +26,14 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-start items-center gap-6 pt-20">
-      <Logo showText={false} imageClassName="!w-[34px] !h-[34px]" />
+    <div className="w-full h-full flex flex-col justify-start items-center gap-6 md:gap-[88px] pt-20">
+      <Logo showText={false} imageClassName="!w-[34px] !h-[34px] md:hidden" />
+      <Logo showText imageClassName="!w-[34px] !h-[34px]" />
       <div className="flex flex-col gap-16">
-        <h1 className="text-[40px] leading-[60px] font-bold text-center text-foreground">
+        <h1 className="text-[40px] leading-[60px] md:text-[56px] md:leading-[84px] font-bold text-center text-foreground">
           Log in or Sign up
         </h1>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 md:px-7">
           <Button>
             <LoginWith image="/google.png" text="With Google" />
           </Button>

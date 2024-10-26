@@ -29,6 +29,9 @@
     --rating-star-forebackground: 0 0% 78%;
     --positive: 137 100% 50%;
     --note: 65 100% 89%;
+
+    --scroll-thumb: 0, 0%, 100%, 0.4;
+    --scroll-thumb-background: 215.4, 16.3%, 46.9%, 0.6;
   }
 
   .dark {
@@ -71,5 +74,27 @@
 
   .text-gradient-primary {
     @apply bg-gradient-primary bg-clip-text text-transparent;
+  }
+}
+
+@media (min-width: 768px) {
+  /* md screen */
+  /* Size */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track,
+  .scrollbar-visible::-webkit-scrollbar-track {
+    border-radius: 999999px;
+    background: hsla(var(--scroll-thumb-background));
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb,
+  .scrollbar-visible::-webkit-scrollbar-thumb {
+    background: hsla(var(--scroll-thumb));
+    border-radius: 9999px;
   }
 }
