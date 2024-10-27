@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ContentProvider from "../providers/ContentProvider";
+import AuthProvider from "../providers/AuthProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -11,5 +12,9 @@ export default function ContentLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <ContentProvider>{children}</ContentProvider>;
+  return (
+    <AuthProvider>
+      <ContentProvider>{children}</ContentProvider>
+    </AuthProvider>
+  );
 }
