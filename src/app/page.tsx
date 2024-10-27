@@ -10,6 +10,18 @@ import { Button } from "../components/ui/button";
 import { IoMdStar } from "react-icons/io";
 import { formatDate } from "../lib/utils/dateUtils";
 import Link from "next/link";
+import { motion } from "framer-motion";
+
+const animationProps = {
+  initial: { opacity: 0, scale: 1, y: 20 },
+  whileInView: "visible",
+  viewport: { once: true },
+  transition: { duration: 0.4 },
+  variants: {
+    visible: { opacity: 1, scale: 1, y: 0 },
+    hidden: { opacity: 0, scale: 0 },
+  },
+};
 
 const Section = ({
   title,
@@ -233,14 +245,26 @@ export default function Home() {
     >
       <Logo />
       <div className="w-full h-full flex flex-col gap-16 overflow-auto pb-6 pt-[69px] md:pb-11 md:pt-[49px]">
-        <h2 className="text-5xl leading-[72px] md:text-7xl md:leading-[96px] font-semibold">
-          Are you <br /> ready for it?
-        </h2>
-        <Cards />
-        <UsInNumbers />
-        <Reviews />
-        <BottomCallToAction />
-        <Footer />
+        <motion.div {...animationProps}>
+          <h2 className="text-5xl leading-[72px] md:text-7xl md:leading-[96px] font-semibold">
+            Are you <br /> ready for it?
+          </h2>
+        </motion.div>
+        <motion.div {...animationProps}>
+          <Cards />
+        </motion.div>
+        <motion.div {...animationProps}>
+          <UsInNumbers />
+        </motion.div>
+        <motion.div {...animationProps}>
+          <Reviews />
+        </motion.div>
+        <motion.div {...animationProps}>
+          <BottomCallToAction />
+        </motion.div>
+        <motion.div {...animationProps}>
+          <Footer />
+        </motion.div>
       </div>
     </main>
   );

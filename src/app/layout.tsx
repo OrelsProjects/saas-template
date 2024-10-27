@@ -3,10 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "./providers/StoreProvider";
 import SessionWrapper from "./providers/SessionWrapper";
-import AuthProvider from "./providers/AuthProvider";
 import { cn } from "../lib/utils";
-import { PoppinsFont } from "../lib/utils/fontUtils";
 import UnautenticatedProvider from "./providers/UnautenticatedProvider";
+import AnimationProvider from "./providers/AnimationProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,9 +24,9 @@ export default function RootLayout({
       <body className={cn(inter.className, "relative h-dvh w-screen")}>
         <StoreProvider>
           <SessionWrapper>
-            <AuthProvider>
-              <UnautenticatedProvider>{children}</UnautenticatedProvider>
-            </AuthProvider>
+            <UnautenticatedProvider>
+              <AnimationProvider>{children}</AnimationProvider>
+            </UnautenticatedProvider>
           </SessionWrapper>
         </StoreProvider>
       </body>
