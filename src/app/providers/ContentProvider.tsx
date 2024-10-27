@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import NavigationBar from "../../components/navbar/navbar";
+import NavigationBar from "@/components/navbar/navbar";
 
 export default function ContentProvider({
   children,

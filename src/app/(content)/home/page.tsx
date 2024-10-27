@@ -3,8 +3,8 @@ import { cn } from "@/lib/utils";
 import { FaClipboardList } from "react-icons/fa6";
 import { GoArrowUpRight } from "react-icons/go";
 import { Note } from "./note";
-import WorkTimeChart from "../../../components/graphs/workTimePie";
-import { UsageGraph } from "../../../components/graphs/usageGraph";
+import WorkTimeChart from "@/components/graphs/workTimePie";
+import { UsageGraph } from "@/components/graphs/usageGraph";
 
 const Card = ({
   title,
