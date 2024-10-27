@@ -126,14 +126,14 @@ const UsInNumbers = () => (
         title="95%"
         explainingText="Increase in <br /> whatever it is"
       />
-      <NumbersLine />
+      <NumbersLine className="hidden md:flex" />
       <NumbersComponent
         className="ml-[50px] md:ml-0"
         showLine
         title="87K"
         explainingText="Users who <br /> are great"
       />
-      <NumbersLine />
+      <NumbersLine className="hidden md:flex" />
       <NumbersComponent
         className="ml-[100px] md:ml-0"
         title="60M"
