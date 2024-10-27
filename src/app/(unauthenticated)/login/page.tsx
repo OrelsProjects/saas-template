@@ -3,8 +3,8 @@
 import React from "react";
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
-import Logo from "../../components/logo";
-import { Button } from "../../components/ui/button";
+import Logo from "../../../components/logo";
+import { Button } from "../../../components/ui/button";
 
 const LoginWith = ({ image, text }: { image: string; text: string }) => (
   <div className="w-full h-full flex justify-center items-center gap-1">

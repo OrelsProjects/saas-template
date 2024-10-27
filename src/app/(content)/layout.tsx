@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import NavigationBar from "../../components/navbar/navbar";
 import ContentProvider from "../providers/ContentProvider";
 
 export const metadata: Metadata = {

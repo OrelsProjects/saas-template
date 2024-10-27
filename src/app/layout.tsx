@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, "h-dvh w-screen")}>
+      <body className={cn(inter.className, "relative h-dvh w-screen")}>
         <StoreProvider>
           <SessionWrapper>
             <AuthProvider>

@@ -2,7 +2,7 @@
 
 import React from "react";
 import PricingCard, { CardType } from "./pricingCard";
-import Logo from "../../components/logo";
+import Logo from "../../../components/logo";
 
 const pricingData = [
   {
