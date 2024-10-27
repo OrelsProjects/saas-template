@@ -54,7 +54,7 @@ const PricingCard = ({ type, title, price, features }: PricingCardProps) => {
           {features.map((feature, index) => (
             <li
               key={index}
-              className="flex flex-row items-center gap-4 md:gap-[3px]"
+              className="flex flex-row items-center gap-4"
             >
               <CheckMark className="fill-foreground w-6 h-6 flex-shrink-0" />
               <span>{feature.feature}</span>
