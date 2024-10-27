@@ -4,12 +4,14 @@ import React, { useEffect } from "react";
 import { useAppDispatch } from "@/lib/hooks/redux";
 import { useSession } from "next-auth/react";
 import { setUser } from "@/lib/features/auth/authSlice";
+import { useRouter } from "next/navigation";
 
 export default function AuthProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const { data, status } = useSession();
 
@@ -24,13 +26,14 @@ export default function AuthProvider({
         break;
       case "unauthenticated":
         dispatch(setUser());
+        router.push("/");
         break;
       default:
         break;
     }
   }, [status]);
 
-  if (status === "loading") {
+  if (status !== "authenticated") {
     return <div>Loading...</div>;
   }
 

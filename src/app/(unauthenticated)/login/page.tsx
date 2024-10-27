@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import Logo from "../../../components/logo";
 import { Button } from "../../../components/ui/button";
@@ -12,19 +11,13 @@ const LoginWith = ({ image, text }: { image: string; text: string }) => (
       src={image}
       fill
       alt="login-logo"
-      className="!relative !h-[18px] !w-[18px] md:!h-8 md:!w-8"
+      className="!relative !h-[18px] !w-[18px] md:!h-7 md:!w-7"
     />
-    <p className="text-base text-foreground font-light">{text}</p>
+    <p className="text-base text-foreground font-light md:text-lg">{text}</p>
   </div>
 );
 
 export default function LoginPage() {
-  const { data } = useSession();
-
-  const login = async () => {
-    await signIn("google");
-  };
-
   return (
     <div className="w-full h-full flex flex-col justify-start items-center gap-6 md:gap-[88px] pt-20">
       <Logo showText={false} imageClassName="!w-[34px] !h-[34px] md:hidden" />

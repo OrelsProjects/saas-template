@@ -9,6 +9,7 @@ import Card from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { IoMdStar } from "react-icons/io";
 import { formatDate } from "../lib/utils/dateUtils";
+import Link from "next/link";
 
 const Section = ({
   title,
@@ -200,7 +201,9 @@ const BottomCallToAction = () => (
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin efficitur
       metus
     </p>
-    <Button className="py-4 px-14">Join us!</Button>
+    <Button className="py-4 px-14" asChild>
+      <Link href="/login">Join us!</Link>
+    </Button>
   </div>
 );
 
