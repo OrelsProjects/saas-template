@@ -23,9 +23,9 @@ const PricingCard = ({ type, title, price, features }: PricingCardProps) => {
   return (
     <div
       className={cn(
-        "relative w-full flex flex-col gap-[72px] p-6 rounded-2xl border border-foreground/10 overflow-hidden",
+        "relative w-full flex flex-col gap-[72px] p-6 rounded-2xl border border-foreground/10 overflow-hidden md:justify-between md:h-full md:px-6 lg:px-12",
         {
-          "w-11/12": !isPrimary,
+          "w-11/12 md:h-[90%]": !isPrimary,
         }
       )}
     >
@@ -40,7 +40,7 @@ const PricingCard = ({ type, title, price, features }: PricingCardProps) => {
           }
         )}
       />
-      <div className="flex flex-col gap-4 relative z-10">
+      <div className="h-full flex flex-col gap-4 relative z-10">
         <div className="flex flex-col gap-2">
           {isPrimary && (
             <div className="flex justify-center">
@@ -50,10 +50,13 @@ const PricingCard = ({ type, title, price, features }: PricingCardProps) => {
           <h2 className="text-base text-center">{title}</h2>
         </div>
         <p className="text-4xl text-center">${price}</p>
-        <ul className="flex flex-col gap-2.5 text-foreground text-lg">
+        <ul className="overflow-auto flex flex-col gap-2.5 text-foreground text-lg md:h-4/6 ">
           {features.map((feature, index) => (
-            <li key={index} className="flex flex-row items-center gap-4">
-              <CheckMark className="fill-foreground w-6 h-6" />
+            <li
+              key={index}
+              className="flex flex-row items-center gap-4 md:gap-[3px]"
+            >
+              <CheckMark className="fill-foreground w-6 h-6 flex-shrink-0" />
               <span>{feature.feature}</span>
             </li>
           ))}
@@ -62,7 +65,7 @@ const PricingCard = ({ type, title, price, features }: PricingCardProps) => {
 
       <Button
         variant={isPrimary ? "default" : "outline"}
-        className="w-full z-10"
+        className="w-full z-10 md:font-medium md:text-base md:mb-0"
       >
         Start Trial
       </Button>

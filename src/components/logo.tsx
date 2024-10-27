@@ -7,15 +7,17 @@ export interface LogoProps {
   showText?: boolean;
   size?: "small" | "large";
   imageClassName?: string;
+  className?: string;
 }
 
 export default function Logo({
   showText = true,
   size = "large",
   imageClassName,
+  className,
 }: LogoProps) {
   return (
-    <div className="flex flex-row items-center gap-1">
+    <div className={cn("flex flex-row items-center gap-1", className)}>
       <Image
         src="/logo.png"
         alt="saas-template-logo"

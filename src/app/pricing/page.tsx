@@ -42,21 +42,27 @@ const pricingData = [
 
 export default function PricingPage() {
   return (
-    <div className="flex flex-col items-center my-8 gap-14">
-      <div className="w-full flex justify-start">
-        <Logo showText={false} imageClassName="!h-8 !w-8" />
-      </div>
-      <div className="w-full flex flex-col items-center md:flex-row gap-4 pb-10">
-        <h1 className="text-4xl font-bold text-foreground mb-8">Our deals</h1>
-        {pricingData.map((card, index) => (
-          <PricingCard
-            key={index}
-            type={card.type}
-            title={card.title}
-            price={card.price}
-            features={card.features}
-          />
-        ))}
+    <div className="w-full h-fit flex flex-col items-center pt-8 overflow-clip pb-10">
+      <div className="h-fit w-fit flex flex-col items-center gap-4">
+        {/* Logo */}
+        <div className="w-full flex justify-start">
+          <Logo showText={false} size="large" className="md:hidden" />
+          <Logo showText size="large" className="hidden md:flex" />
+        </div>
+        <h1 className="text-4xl font-bold text-foreground md:mb-12">Our deals</h1>
+
+        {/* Plans */}
+        <div className="flex flex-col items-center md:flex-row gap-4 md:h-[550px]">
+          {pricingData.map((card, index) => (
+            <PricingCard
+              key={index}
+              type={card.type}
+              title={card.title}
+              price={card.price}
+              features={card.features}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
