@@ -224,7 +224,10 @@ const CompanyLogo = ({ src, alt }: { src: string; alt: string }) => (
 );
 
 const Footer = () => (
-  <Section title="You can find us working with">
+  <Section
+    title="You can find us working with"
+    className="items-center md:items-start"
+  >
     <div className="w-full flex flex-col items-center gap-10 md:grid md:grid-cols-5 md:gap-20 overflow-x-auto flex-shrink-0">
       <CompanyLogo src="/edge-kart.png" alt="Edge Kart" />
       <CompanyLogo src="/grasshopper.png" alt="Grasshopper" />
