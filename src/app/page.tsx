@@ -44,14 +44,14 @@ const Section = ({
 
 const CardContent = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Card className="h-[268px] w-[253px] md:w-[386px] md:h-[327px] flex-shrink-0">
+    <Card className="h-[268px] w-[253px] lg:w-full lg:h-[327px] flex-shrink-0">
       <div className="h-full flex flex-col gap-4">{children}</div>
     </Card>
   );
 };
 
 const Cards = () => (
-  <div className="w-full h-fit flex flex-row gap-4 md:grid md:grid-cols-3 md:h-[327px] overflow-auto flex-shrink-0">
+  <div className="w-full h-fit flex flex-row gap-4 md:grid md:grid-cols-3 overflow-auto flex-shrink-0">
     <CardContent>
       <h3 className={cn("text-2xl font-medium")}>Learning</h3>
       <p className="text-base text-foreground/80 font-light">
@@ -152,7 +152,7 @@ const Star = () => (
 const Reviews = () => (
   <Section title="People say that">
     <div className="w-full flex flex-row md:grid md:grid-cols-3 gap-4 overflow-x-auto flex-shrink-0">
-      <Card className="w-[253px] h-[228px] md:w-[386px] flex flex-col gap-4 py-8 px-[18px]">
+      <Card className="w-[253px] h-[228px] lg:w-full flex flex-col gap-4 py-8 px-[18px]">
         <div className="flex flex-row gap-2">
           <Star />
           <Star />
@@ -168,7 +168,7 @@ const Reviews = () => (
         </p>
         <p className="text-sm text-foreground/40">{formatDate(new Date())}</p>
       </Card>
-      <Card className="w-[253px] h-[228px] md:w-[386px] flex flex-col gap-4 py-8 px-[18px]">
+      <Card className="w-[253px] h-[228px] lg:w-full flex flex-col gap-4 py-8 px-[18px]">
         <div className="flex flex-row gap-2">
           <Star />
           <Star />
@@ -184,7 +184,7 @@ const Reviews = () => (
         </p>
         <p className="text-sm text-foreground/40">{formatDate(new Date())}</p>
       </Card>
-      <Card className="w-[253px] h-[228px] md:w-[386px] flex flex-col gap-4 py-8 px-[18px]">
+      <Card className="w-[253px] h-[228px] lg:w-full flex flex-col gap-4 py-8 px-[18px]">
         <div className="flex flex-row gap-2">
           <Star />
           <Star />
@@ -224,7 +224,10 @@ const CompanyLogo = ({ src, alt }: { src: string; alt: string }) => (
 );
 
 const Footer = () => (
-  <Section title="You can find us working with">
+  <Section
+    title="You can find us working with"
+    className="items-center md:items-start"
+  >
     <div className="w-full flex flex-col items-center gap-10 md:grid md:grid-cols-5 md:gap-20 overflow-x-auto flex-shrink-0">
       <CompanyLogo src="/edge-kart.png" alt="Edge Kart" />
       <CompanyLogo src="/grasshopper.png" alt="Grasshopper" />
@@ -239,7 +242,7 @@ export default function Home() {
   return (
     <main
       className={cn(
-        "h-dvh w-full flex flex-col md:gap-12 bg-background text-foreground px-5 pt-6 md:px-40 md:pt-11",
+        "h-dvh w-full flex flex-col md:gap-12 bg-background text-foreground px-5 pt-6 md:pt-11",
         PoppinsFont.className
       )}
     >
