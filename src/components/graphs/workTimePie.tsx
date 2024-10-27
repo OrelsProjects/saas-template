@@ -24,9 +24,12 @@ interface LegendItemProps {
 // Custom Legend Item
 const LegendItem: React.FC<LegendItemProps> = ({ color, label }) => {
   return (
-    <div className="flex items-center justify-center gap-0.5">
-      <span className="w-2 h-2" style={{ backgroundColor: color }}></span>
-      <span className="text-[8px] text-center">{label}</span>
+    <div className="flex items-center justify-center gap-0.5 md:gap-1.5">
+      <span
+        className="w-2 h-2 md:w-3 md:h-3"
+        style={{ backgroundColor: color }}
+      ></span>
+      <span className="text-[8px] md:text-xs text-center">{label}</span>
     </div>
   );
 };
@@ -34,17 +37,25 @@ const LegendItem: React.FC<LegendItemProps> = ({ color, label }) => {
 const WorkTimeChart: React.FC = () => {
   return (
     <div className="relative w-3/4 h-full flex flex-col justify-center items-center">
-      <ResponsiveContainer height={75} width={75} className="md:hidden">
+      <ResponsiveContainer
+        height={120}
+        width={120}
+        className="overflow-visible"
+      >
         <PieChart>
           <Pie
+            overflow="visible"
             data={data}
             dataKey="value"
             nameKey="name"
             cx="50%"
-            cy="50%"
-            innerRadius="75%" // Creates the donut effect
-            outerRadius="100%"
+            cy="60%"
+            innerRadius="30%" // Creates the donut effect
+            outerRadius="45%"
             stroke="none"
+            fontSize={12}
+            label={(label) => label.value + "%"}
+            labelLine
           >
             {data.map((entry, index) => (
               <Cell

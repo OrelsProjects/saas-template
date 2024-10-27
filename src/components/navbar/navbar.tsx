@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { BottomBarItems, NavigationBarItem } from "./_consts";
+import Logo from "../logo";
 
 interface NavigationBar {
   ref?: React.RefObject<HTMLDivElement>;
@@ -29,16 +30,20 @@ const NavigationBar: React.FC<NavigationBar> = ({ ...props }) => {
     <Link
       href={item.href}
       className={cn(
-        "flex-1 flex items-center justify-center md:justify-start md:hover:bg-muted-foreground/20  md:rounded-lg md:p-4 cursor-pointer",
-        {
-          "md:bg-muted-foreground/20": isItemActive(item),
-        }
+        "flex-1 flex items-center justify-center md:justify-start md:rounded-lg cursor-pointer"
       )}
       key={item.href}
       data-onboarding-id={id}
     >
       <div className="flex flex-col md:flex-row gap-2 justify-center items-center">
         {isItemActive(item) ? <item.iconActive /> : <item.icon />}
+        <span
+          className={cn("hidden md:inline text-xl leading-[30px]", {
+            "text-gradient-primary": isItemActive(item),
+          })}
+        >
+          {item.label}
+        </span>
       </div>
     </Link>
   );
@@ -46,12 +51,13 @@ const NavigationBar: React.FC<NavigationBar> = ({ ...props }) => {
   const SideNavigationBar = () => (
     <div
       className={cn(
-        "hidden md:sticky md:flex md:w-60 inset-x-0 bottom-0 md:left-0 z-40 bg-base-200 border-base-content/10 select-none",
+        "hidden md:sticky md:flex flex-col w-60 inset-x-0 bottom-0 left-0 z-40 select-none gap-header-to-content",
         props.className
       )}
       ref={props.ref}
     >
-      <div className="h-16 w-fit flex flex-col gap-2">
+      <Logo size="small" />
+      <div className="h-16 w-fit flex flex-col gap-10">
         {items.map((item) => (
           <Item
             item={item}
@@ -65,10 +71,10 @@ const NavigationBar: React.FC<NavigationBar> = ({ ...props }) => {
 
   const BottomNavigationBar = () => (
     <div
-      className="fixed py-[18px] bg-foreground/5 md:hidden inset-x-0 bottom-0 md:left-0 z-40 select-none"
+      className="fixed py-[18px] bg-foreground/5 md:hidden inset-x-0 bottom-0 z-40 select-none"
       ref={props.ref}
     >
-      <div className="py-2 w-full flex flex-row">
+      <div className="py-2 w-full flex flex-row gap-10">
         {items.map((item) => (
           <Item
             item={item}

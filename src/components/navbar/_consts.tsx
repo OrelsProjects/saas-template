@@ -5,8 +5,8 @@ import {
   IoStatsChartOutline as Statistics,
 } from "react-icons/io5";
 import {
-  IoSettingsOutline as SettingsActive,
-  IoSettings as Settings,
+  IoSettingsOutline as Settings,
+  IoSettings as SettingsActive,
 } from "react-icons/io5";
 
 import { cn } from "../../lib/utils";

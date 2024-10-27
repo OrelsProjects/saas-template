@@ -27,7 +27,7 @@ const Card = ({
         className
       )}
     >
-      <h3 className="text-sm">{title}</h3>
+      <h3 className="text-sm md:text-xl flex-shrink-0">{title}</h3>
       <div className="w-full text-base text-foreground/80 font-light">
         {children}
       </div>
@@ -37,41 +37,71 @@ const Card = ({
 
 export default function HomePage() {
   return (
-    <div className="w-full h-full flex flex-col gap-[60px] items-center">
-      <h2 className="text-xl font-semibold">August - Sepetember 2023</h2>
+    <div className="w-full h-full md:h-fit flex flex-col gap-8 mt-7 items-center">
+      <h2 className="w-full text-xl md:text-3xl font-semibold text-center md:text-start">
+        August - Sepetember 2023
+      </h2>
       <div className="h-full w-full flex flex-col gap-4 overflow-auto">
-        <div className="w-full flex flex-row gap-4">
-          <Card className="w-full" title="Completed">
+        {/* Upper section */}
+        <div className="w-full flex flex-row gap-4 md:h-52">
+          <Card className="w-full md:pb-14" title="Completed">
             <div className="flex flex-row items-center gap-2">
               <FaClipboardList className="w-8 h-8 fill-positive" />
-              <p className="text-lg font-medium text-foreground">50/100</p>
+              <p className="text-lg md:text-2xl font-medium text-foreground">
+                50/100
+              </p>
             </div>
           </Card>
-          <Card className="w-full" title="Revenue" border>
+          <Card className="hidden md:flex w-full md:pb-14" title="In progress">
+            <div className="flex flex-row items-center gap-2">
+              <FaClipboardList className="w-8 h-8 fill-progress" />
+              <p className="text-lg md:text-2xl font-medium text-foreground">
+                20/100
+              </p>
+            </div>
+          </Card>
+          <Card className="w-full md:pb-14" title="Revenue" border>
             <div className="w-full flex flex-row items-center justify-between gap-2">
-              <p className="text-xl font-semibold text-foreground">106K</p>
+              <p className="text-xl md:text-3xl font-semibold text-foreground">
+                106K
+              </p>
               <div className="flex flex-row gap-1 items-center">
-                <p className="text-sm text-positive">+20%</p>
+                <p className="text-sm md:text-base text-positive">+20%</p>
                 <GoArrowUpRight className="w-3 h-3 fill-positive" />
               </div>
             </div>
           </Card>
         </div>
-        <div className="h-[186px] w-full flex flex-row gap-4 flex-shrink-0">
-          <Card className="w-full" title="Notes">
-            <div className="relative h-[100px] w-[100px] md:w-32 md:h-32 flex justify-center items-center">
-              <Note className="absolute">Alarm</Note>
-              <Note className="absolute ml-6">Reminder</Note>
-              <Note className="absolute ml-12">Important</Note>
+
+        {/* Mid section */}
+        <div className="h-[186px] w-full flex flex-row gap-4 flex-shrink-0 md:grid md:grid-cols-3 md:h-52">
+          <Card
+            className="w-full md:col-span-2 md:order-last md:justify-start"
+            title="Notes"
+          >
+            <div className="relative h-[100px] w-[100px] flex justify-center items-center md:w-full md:h-32 md:gap-5">
+              <Note className="absolute md:relative">Alarm</Note>
+              <Note className="absolute ml-6 md:relative md:ml-0">
+                Reminder
+              </Note>
+              <Note className="absolute ml-12 md:relative md:ml-0">
+                Important
+              </Note>
             </div>
           </Card>
-          <Card className="w-full" title="Work Time">
+          <Card className="w-full md:col-span-1" title="Work Time">
             <div className="flex w-full h-full justify-center items-center">
               <WorkTimeChart />
             </div>
           </Card>
         </div>
-        <Card className="w-full h-fit" border title="Usage over time">
+
+        {/* Lower graph */}
+        <Card
+          className="w-full h-fit md:flex-row"
+          border
+          title="Usage over time"
+        >
           <UsageGraph />
         </Card>
       </div>

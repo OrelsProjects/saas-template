@@ -10,7 +10,7 @@ export const Note = ({
 }) => (
   <div
     className={cn(
-      "w-full h-full flex justify-center items-center rounded-md bg-note text-background font-medium shadow-md md:shadow-none",
+      "w-full h-full flex justify-center items-center rounded-md bg-note text-background font-medium shadow-md md:shadow-none md:w-32 md:h-32",
       className
     )}
   >

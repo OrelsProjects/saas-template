@@ -28,6 +28,7 @@
     --rating-star-background: 160 100% 36%;
     --rating-star-forebackground: 0 0% 78%;
     --positive: 137 100% 50%;
+    --progress: 29 100% 50%;
     --note: 65 100% 89%;
 
     --scroll-thumb: 0, 0%, 100%, 0.4;
@@ -74,6 +75,10 @@
 
   .text-gradient-primary {
     @apply bg-gradient-primary bg-clip-text text-transparent;
+  }
+
+  .gap-header-to-content {
+    @apply gap-[60px];
   }
 }
 

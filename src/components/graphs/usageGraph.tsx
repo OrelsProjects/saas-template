@@ -29,7 +29,11 @@ const data: LineChartItem[] = [
 
 export const UsageGraph: React.FC = () => {
   return (
-    <ResponsiveContainer width="100%" height={200}>
+    <ResponsiveContainer
+      width="100%"
+      height={200}
+      className="flex-shrink md:pr-32"
+    >
       <LineChart data={data}>
         {/* Define Gradient */}
         <defs>

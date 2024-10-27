@@ -64,6 +64,7 @@ const config = {
           foreground: "hsl(var(--rating-star-foreground))",
         },
         positive: "hsl(var(--positive))",
+        progress: "hsl(var(--progress))",
         note: "hsl(var(--note))",
       },
       borderRadius: {
