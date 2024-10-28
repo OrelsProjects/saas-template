@@ -16,7 +16,7 @@ const AnimationProvider: React.FC<ProviderProps> = ({ children }) => {
     if (previousPathame.current !== pathname) {
       previousPathame.current = pathname;
     }
-  }, []);
+  }, [pathname]);
 
   return (
     <motion.div

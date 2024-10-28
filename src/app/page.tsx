@@ -226,7 +226,7 @@ const CompanyLogo = ({ src, alt }: { src: string; alt: string }) => (
 const Footer = () => (
   <Section
     title="You can find us working with"
-    className="items-center md:items-start"
+    className="items-center"
   >
     <div className="w-full flex flex-col items-center gap-10 md:grid md:grid-cols-5 md:gap-20 overflow-x-auto flex-shrink-0">
       <CompanyLogo src="/edge-kart.png" alt="Edge Kart" />
@@ -248,11 +248,9 @@ export default function Home() {
     >
       <Logo />
       <div className="w-full h-full flex flex-col gap-16 overflow-auto pb-6 pt-[69px] md:pb-11 md:pt-[49px]">
-        <motion.div {...animationProps}>
-          <h2 className="text-5xl leading-[72px] md:text-7xl md:leading-[96px] font-semibold">
+        <motion.h2 {...animationProps}>
             Are you <br /> ready for it?
-          </h2>
-        </motion.div>
+        </motion.h2>
         <motion.div {...animationProps}>
           <Cards />
         </motion.div>
