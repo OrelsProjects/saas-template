@@ -9,52 +9,113 @@ datasource db {
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String  @map("user_id")
-  type               String
-  provider           String
-  providerAccountId  String  @map("provider_account_id")
-  refresh_token      String? @db.Text
-  access_token       String? @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String? @db.Text
-  session_state      String?
- 
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   @@unique([provider, providerAccountId])
   @@map("accounts")
 }
- 
+
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique @map("session_token")
   userId       String   @map("user_id")
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   @@map("sessions")
 }
- 
+
 model User {
   id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
   emailVerified DateTime? @map("email_verified")
   image         String?
-  accounts      Account[]
-  sessions      Session[]
- 
+
+  accounts          Account[]
+  sessions          Session[]
+  userPurchases     UserPurchase[]
+  userSubscriptions UserSubscription[]
+
   @@map("users")
 }
- 
+
 model VerificationToken {
   identifier String
   token      String
   expires    DateTime
- 
+
   @@unique([identifier, token])
   @@map("verificationtokens")
+}
+
+model Product {
+  id            String         @id @default(cuid())
+  name          String
+  currency      String // USD
+  price         Float
+  UserPurchases UserPurchase[]
+
+  @@map("product")
+}
+
+model UserPurchase {
+  id String @id @default(cuid())
+
+  productId String @map("product_id")
+  userId    String @map("user_id")
+  status    String @default("pending") // pending, completed, cancelled
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  product Product @relation(fields: [productId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
+
+  @@map("userPurchase")
+}
+
+model UserSubscription {
+  id String @id @default(cuid())
+
+  userId String? @map("user_id")
+  planId String  @map("plan_id")
+
+  subscriptionId    String?  @map("subscription_id")
+  startDate         DateTime @map("start_date")
+  status            String
+  nextBillingDate   DateTime @map("next_billing_date")
+  lastPaymentDate   DateTime @map("last_payment_date")
+  lastPaymentAmount Float    @map("last_payment_amount")
+
+  payments UserPayment[]
+  User     User?         @relation(fields: [userId], references: [id])
+
+  @@map("userSubscription")
+}
+
+model UserPayment {
+  id             String   @id @default(cuid())
+  paymentID      String   @map("payment_id")
+  subscriptionId String   @map("subscription_id")
+  paidAmount     Float    @map("paid_amount")
+  paymentStatus  String   @map("payment_status")
+  paymentDate    DateTime @map("payment_date")
+
+  userSubscription UserSubscription @relation(fields: [subscriptionId], references: [id])
+
+  @@map("userPayment")
 }
