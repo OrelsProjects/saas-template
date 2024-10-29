@@ -24,9 +24,9 @@ export default function RootLayout({
       <body className={cn(inter.className, "relative h-dvh w-screen")}>
         <StoreProvider>
           <SessionWrapper>
-            <UnautenticatedProvider>
-              <AnimationProvider>{children}</AnimationProvider>
-            </UnautenticatedProvider>
+              <UnautenticatedProvider>
+                <AnimationProvider>{children}</AnimationProvider>
+              </UnautenticatedProvider>
           </SessionWrapper>
         </StoreProvider>
       </body>

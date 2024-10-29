@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ContentProvider from "../providers/ContentProvider";
 import AuthProvider from "../providers/AuthProvider";
+import PaymentProvider from "../providers/PaymentProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,7 +15,9 @@ export default function ContentLayout({
 }>) {
   return (
     <AuthProvider>
-      <ContentProvider>{children}</ContentProvider>
+      <ContentProvider>
+        <PaymentProvider>{children}</PaymentProvider>
+      </ContentProvider>
     </AuthProvider>
   );
 }
