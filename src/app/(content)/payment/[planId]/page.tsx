@@ -1,13 +1,16 @@
 "use client";
 
 import React, { useMemo } from "react";
-import PaymentButtons from "./paypalButtons";
+import PaymentButtons from "./paymentButtons";
+import usePayments from "../../../../lib/hooks/usePayments";
 
 export default function PaymentPage({
   params,
 }: {
   params: { planId: string };
 }) {
+  const { createOrder } = usePayments();
+
   const isSubscription = useMemo(
     () => params.planId !== process.env.NEXT_PUBLIC_PLAN_ID_ONE_TIME,
     [params]
@@ -32,8 +35,7 @@ export default function PaymentPage({
           return subscriptionId;
         }}
         createOrder={async (data, actions) => {
-          // Logic
-          const orderId = "";
+          const orderId = await createOrder(params.planId);
           return orderId;
         }}
         onApprove={async (data, actions) => {
