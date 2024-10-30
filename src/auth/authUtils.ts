@@ -11,7 +11,7 @@ export async function session({
   token: JWT;
   user: AdapterUser;
 }) {
-  const userId = user.id;
+  const userId = user.id || token?.sub;
   if (!userId) {
     throw new Error("No user ID found in JWT");
   }
