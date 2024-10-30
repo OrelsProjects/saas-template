@@ -3,10 +3,11 @@ import {
     PayPalButtonsComponentProps,
   } from "@paypal/react-paypal-js";
   import React from "react";
+import { PlanId } from "@/models/payment";
   
   export interface PaymentButtonsProps extends PayPalButtonsComponentProps {
     subscription?: {
-      planId: string;
+      planId: PlanId;
     };
   }
   
@@ -24,8 +25,8 @@ import {
       />
     ) : (
       <PayPalButtons
-        createOrder={createOrder}
-        createSubscription={undefined}
+      createSubscription={undefined}
+      createOrder={createOrder}
         {...props}
       />
     );

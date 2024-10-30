@@ -64,7 +64,7 @@ export default function PricingPage() {
           {pricingData.map((card, index) => (
             <PricingCard
               key={index}
-              onClick={() => router.push(`/payment/${card.planId}`)}
+              onClick={() => router.push(`/checkout/${card.planId}`)}
               type={card.type}
               title={card.title}
               price={card.price}

@@ -46,6 +46,7 @@ export async function session({
     user: {
       ...session.user,
       meta: userMeta,
+      userId,
     },
   };
 

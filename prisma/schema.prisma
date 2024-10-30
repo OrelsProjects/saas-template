@@ -79,7 +79,7 @@ model Product {
   name          String
   currency      String // USD
   price         Float
-  UserPurchases UserPurchase[]
+  userPurchases UserPurchase[]
 
   @@map("product")
 }
@@ -95,8 +95,8 @@ model UserPurchase {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
 
-  product Product @relation(fields: [productId], references: [id])
   user    User    @relation(fields: [userId], references: [id])
+  Product Product @relation(fields: [productId], references: [id])
 
   @@map("userPurchase")
 }
@@ -121,14 +121,14 @@ model UserSubscription {
 }
 
 model UserPayment {
-  id             String   @id @default(cuid())
-  paymentID      String   @map("payment_id")
-  userSubscriptionId String   @unique @map("subscription_id")
-  paidAmount     Float    @map("paid_amount")
-  paymentStatus  String   @map("payment_status")
-  paymentDate    DateTime @map("payment_date")
+  id                 String   @id @default(cuid())
+  paymentID          String   @map("payment_id")
+  subscriptionId String   @unique @map("subscription_id")
+  paidAmount         Float    @map("paid_amount")
+  paymentStatus      String   @map("payment_status")
+  paymentDate        DateTime @map("payment_date")
 
-  userSubscription UserSubscription @relation(fields: [userSubscriptionId], references: [id])
+  userSubscription UserSubscription @relation(fields: [subscriptionId], references: [id])
 
   @@map("userPayment")
 }
