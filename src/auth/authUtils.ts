@@ -12,7 +12,7 @@ export async function session({
 }) {
   const userId = user.id;
   if (!userId) {
-    throw new Error("No user ID found in JWT");
+    throw new Error("No user ID found in session");
   }
 
   const userFromDB = await prisma.user.findUnique({
@@ -23,6 +23,18 @@ export async function session({
       meta: true,
     },
   });
+
+  if (userFromDB && !userFromDB.meta) {
+    // Create user meta if it doesn't exist
+    const meta = await prisma.userMetaData.create({
+      data: {
+        userId: userId,
+        paidStatus: "free",
+      },
+    });
+
+    userFromDB.meta = { ...meta };
+  }
 
   const userMeta: Partial<UserMetaData> = {
     ...userFromDB?.meta,
@@ -38,24 +50,4 @@ export async function session({
   };
 
   return newSession;
-}
-
-export async function signIn(session: any) {
-  const { user } = session;
-  const userMetaData = await prisma.userMetaData.findFirst({
-    where: {
-      userId: user.id,
-    },
-  });
-
-  if (!userMetaData) {
-    await prisma.userMetaData.create({
-      data: {
-        userId: user.id,
-        paidStatus: "free",
-      },
-    });
-  }
-
-  return session;
 }

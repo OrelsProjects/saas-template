@@ -19,7 +19,7 @@ const pricingData = [
     ],
   },
   {
-    type: "primary" as CardType,
+    type: "regular" as CardType,
     title: "Premium (Annual)",
     price: "159",
     planId: process.env.NEXT_PUBLIC_PLAN_ID_ANNUAL,
@@ -31,9 +31,9 @@ const pricingData = [
     ],
   },
   {
-    type: "regular" as CardType,
-    title: "Team",
-    price: "199 (One-time)",
+    type: "primary" as CardType,
+    title: "Team (One-time)",
+    price: "199",
     planId: process.env.NEXT_PUBLIC_PLAN_ID_ONE_TIME,
     features: [
       { feature: "Special team features" },
