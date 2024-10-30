@@ -14,10 +14,17 @@ export interface PricingCardProps {
   type: CardType;
   title: string;
   price: string;
+  onClick?: () => void;
   features: PricingFeature[];
 }
 
-const PricingCard = ({ type, title, price, features }: PricingCardProps) => {
+const PricingCard = ({
+  type,
+  title,
+  price,
+  onClick,
+  features,
+}: PricingCardProps) => {
   const isPrimary = type === "primary";
 
   return (
@@ -52,10 +59,7 @@ const PricingCard = ({ type, title, price, features }: PricingCardProps) => {
         <p className="text-4xl text-center">${price}</p>
         <ul className="overflow-auto flex flex-col gap-2.5 text-foreground text-lg md:h-4/6 ">
           {features.map((feature, index) => (
-            <li
-              key={index}
-              className="flex flex-row items-center gap-4"
-            >
+            <li key={index} className="flex flex-row items-center gap-4">
               <CheckMark className="fill-foreground w-6 h-6 flex-shrink-0" />
               <span>{feature.feature}</span>
             </li>
@@ -65,6 +69,7 @@ const PricingCard = ({ type, title, price, features }: PricingCardProps) => {
 
       <Button
         variant={isPrimary ? "default" : "outline"}
+        onClick={onClick}
         className="w-full z-10 md:font-medium md:text-base md:mb-0"
       >
         Start Trial

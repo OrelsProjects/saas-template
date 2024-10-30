@@ -26,16 +26,16 @@ export default function AuthProvider({
         break;
       case "unauthenticated":
         dispatch(setUser());
-        // router.push("/");
+        router.push("/");
         break;
       default:
         break;
     }
   }, [status]);
 
-  // if (status !== "authenticated") {
-  //   return <div>Loading...</div>;
-  // }
+  if (status !== "authenticated") {
+    return <div>Loading...</div>;
+  }
 
   return children;
 }
