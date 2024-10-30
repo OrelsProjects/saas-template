@@ -26,7 +26,7 @@ export default function AuthProvider({
         break;
       case "unauthenticated":
         dispatch(setUser());
-        router.push("/");
+        router.push("/login");
         break;
       default:
         break;
