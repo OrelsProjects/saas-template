@@ -4,17 +4,15 @@ import {
   IoStatsChart as StatisticsActive,
   IoStatsChartOutline as Statistics,
 } from "react-icons/io5";
-import {
-  IoSettingsOutline as Settings,
-  IoSettings as SettingsActive,
-} from "react-icons/io5";
+import { MdOutlinePayment as Pricing } from "react-icons/md";
+
 
 import { cn } from "../../lib/utils";
 
 export interface NavigationBarItem {
   icon: ElementType;
   iconActive: ElementType;
-  label: "Home" | "Statistics" | "Settings" | "Profile";
+  label: "Home" | "Pricing" | "Statistics" | "Profile";
   href: string;
   header?: string;
 }
@@ -40,12 +38,12 @@ export const BottomBarItems: NavigationBarItem[] = [
     header: "Statistics",
   },
   {
-    icon: () => <Settings className={className} />,
+    icon: () => <Pricing className={className} />,
     iconActive: () => (
-      <SettingsActive className={cn(className, classNameActive)} />
+      <Pricing className={cn(className, classNameActive)} />
     ),
-    label: "Settings",
-    href: "/settings",
-    header: "Settings",
+    label: "Pricing",
+    href: "/pricing",
+    header: "Pricing",
   },
 ];

@@ -2,14 +2,14 @@
 
 import React, { useMemo } from "react";
 import PaymentButtons from "./paymentButtons";
-import usePayments from "../../../../lib/hooks/usePayments";
+import usePayments from "@/lib/hooks/usePayments";
 
 export default function PaymentPage({
   params,
 }: {
   params: { planId: string };
 }) {
-  const { createOrder } = usePayments();
+  const { createOrder, createSubscription, handleApproveOrder } = usePayments();
 
   const isSubscription = useMemo(
     () => params.planId !== process.env.NEXT_PUBLIC_PLAN_ID_ONE_TIME,
@@ -31,7 +31,7 @@ export default function PaymentPage({
           const subscriptionId = await actions.subscription.create({
             plan_id: params.planId,
           });
-          // Logic
+          await createSubscription(subscriptionId);
           return subscriptionId;
         }}
         createOrder={async (data, actions) => {
@@ -39,12 +39,14 @@ export default function PaymentPage({
           return orderId;
         }}
         onApprove={async (data, actions) => {
-          // Logic
+          await handleApproveOrder(data, actions);
         }}
         onError={(err: any) => {
+          console.error("Error", err);
           // Logic
         }}
         onCancel={async (data) => {
+          console.log("Cancel", data);
           if (data.orderId) {
             // Logic to cancel order
           }
