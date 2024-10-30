@@ -49,8 +49,20 @@ model User {
   sessions          Session[]
   userPurchases     UserPurchase[]
   userSubscriptions UserSubscription[]
+  meta              UserMetaData?
 
   @@map("users")
+}
+
+model UserMetaData {
+  id     String @id @default(cuid())
+  userId String @unique @map("user_id")
+
+  paidStatus String @map("paid_status") // free / premium / suspended
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("userMetaData")
 }
 
 model VerificationToken {
@@ -78,9 +90,10 @@ model UserPurchase {
   productId String @map("product_id")
   userId    String @map("user_id")
   status    String @default("pending") // pending, completed, cancelled
+  orderId   String @unique @map("order_id")
 
   createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @map("updated_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
 
   product Product @relation(fields: [productId], references: [id])
   user    User    @relation(fields: [userId], references: [id])
@@ -94,15 +107,15 @@ model UserSubscription {
   userId String? @map("user_id")
   planId String  @map("plan_id")
 
-  subscriptionId    String?  @map("subscription_id")
-  startDate         DateTime @map("start_date")
+  subscriptionId    String?   @unique @map("subscription_id")
+  startDate         DateTime  @map("start_date")
   status            String
-  nextBillingDate   DateTime @map("next_billing_date")
-  lastPaymentDate   DateTime @map("last_payment_date")
-  lastPaymentAmount Float    @map("last_payment_amount")
+  nextBillingDate   DateTime? @map("next_billing_date")
+  lastPaymentDate   DateTime? @map("last_payment_date")
+  lastPaymentAmount Float?    @map("last_payment_amount")
 
   payments UserPayment[]
-  User     User?         @relation(fields: [userId], references: [id])
+  user     User?         @relation(fields: [userId], references: [id])
 
   @@map("userSubscription")
 }
@@ -110,12 +123,12 @@ model UserSubscription {
 model UserPayment {
   id             String   @id @default(cuid())
   paymentID      String   @map("payment_id")
-  subscriptionId String   @map("subscription_id")
+  userSubscriptionId String   @unique @map("subscription_id")
   paidAmount     Float    @map("paid_amount")
   paymentStatus  String   @map("payment_status")
   paymentDate    DateTime @map("payment_date")
 
-  userSubscription UserSubscription @relation(fields: [subscriptionId], references: [id])
+  userSubscription UserSubscription @relation(fields: [userSubscriptionId], references: [id])
 
   @@map("userPayment")
 }
