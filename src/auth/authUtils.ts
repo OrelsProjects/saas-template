@@ -11,9 +11,12 @@ export async function session({
   token: JWT;
   user: AdapterUser;
 }) {
+  console.log("Session function");
   const userId = user.id || token?.sub;
+  console.log("userId", userId);
+  console.log("session", session);
   if (!userId) {
-    throw new Error("No user ID found in JWT");
+    return session;
   }
   return session;
 }
