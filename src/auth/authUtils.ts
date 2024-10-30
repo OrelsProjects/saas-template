@@ -1,16 +1,13 @@
-import { Account, Profile, Session, User } from "next-auth";
+import { Session } from "next-auth";
 import { AdapterUser } from "next-auth/adapters";
-import { JWT } from "next-auth/jwt";
 import prisma from "@/app/api/_db/db";
 import { UserMetaData } from "@prisma/client";
 
 export async function session({
   session,
-  token,
   user,
 }: {
   session: Session;
-  token: JWT;
   user: AdapterUser;
 }) {
   const userId = user.id;
@@ -32,20 +29,19 @@ export async function session({
     paidStatus: userFromDB?.meta?.paidStatus || "free",
   };
 
-  return {
-    user: { ...session, userId, meta: userMeta },
+  const newSession: Session = {
+    ...session,
+    user: {
+      ...session.user,
+      meta: userMeta,
+    },
   };
+
+  return newSession;
 }
 
-export async function signIn({
-  account,
-  profile,
-  user,
-}: {
-  account: Account;
-  profile: Profile;
-  user: User;
-}) {
+export async function signIn(session: any) {
+  const { user } = session;
   const userMetaData = await prisma.userMetaData.findFirst({
     where: {
       userId: user.id,
