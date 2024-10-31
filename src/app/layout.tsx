@@ -6,6 +6,7 @@ import SessionWrapper from "./providers/SessionWrapper";
 import { cn } from "../lib/utils";
 import UnautenticatedProvider from "./providers/UnautenticatedProvider";
 import AnimationProvider from "./providers/AnimationProvider";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -63,6 +64,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <meta property="og:image" content="<generated>" />
+        <meta property="og:image:type" content="<generated>" />
+        <meta property="og:image:width" content="<generated>" />
+        <meta property="og:image:height" content="<generated>" />
+      </Head>
       <body className={cn(inter.className, "relative h-dvh w-screen")}>
         <StoreProvider>
           <SessionWrapper>
