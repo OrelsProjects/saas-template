@@ -7,7 +7,7 @@ export async function handleSubscriptionExpired(event: PayPalEventResponse) {
     const existingSubscription = await prisma.userSubscription.findFirst({
       where: { subscriptionId: event.resource.id },
       include: {
-        User: {
+        user: {
           select: { id: true },
         },
       },
