@@ -10,7 +10,7 @@ import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const OG_IMAGE_URL = process.env.NEXT_PUBLIC_OG_IMAGE_UR as string;
+const OG_IMAGE_URL = process.env.NEXT_PUBLIC_OG_IMAGE_URL as string;
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME as string;
 const APP_DEFAULT_TITLE = process.env.NEXT_PUBLIC_APP_DEFAULT_TITLE as string;
 const APP_TITLE_TEMPLATE = process.env.NEXT_PUBLIC_APP_TITLE_TEMPLATE as string;
